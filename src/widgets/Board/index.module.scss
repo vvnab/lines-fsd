@@ -1,0 +1,11 @@
+.root {
+    flex: 1 1 auto;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
