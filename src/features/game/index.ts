@@ -74,10 +74,10 @@ class Field {
 
     reset = () => {
         this.score = 0;
-        this.arr = [];
         this.fillArray();
-        this.bornRandom(START_COUNT);
-        setTimeout(this.checkForDeath, ANIMATION_TIMEOUT);
+        this.update();
+        setTimeout(() => this.bornRandom(START_COUNT), ANIMATION_TIMEOUT);
+        setTimeout(this.checkForDeath, ANIMATION_TIMEOUT * 2);
     };
 
     getFieldSnapshot = () => this.arr;
@@ -208,7 +208,10 @@ class Field {
                 score++;
             })
         );
+
         this.score += score ? Math.pow(2, score) : 0;
+
+        score && this.update();
 
         return deaths.length;
     };
@@ -336,7 +339,7 @@ class Field {
     };
 }
 
-const store = new Field({ size: SIZE });
+const gameData = new Field({ size: SIZE });
 
-export default store;
+export default gameData;
 export { Position, Cell, Field };

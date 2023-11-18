@@ -1,11 +1,6 @@
 .root {
-    flex: 1 1 auto;
-    justify-content: center;
-    align-items: center;
-}
-
-.row {
-    display: flex;
-    justify-content: center;
-    align-content: center;
+    grid-area: board;
+    display: grid;
+    width: 100vmin;
+    height: 100vmin;
 }

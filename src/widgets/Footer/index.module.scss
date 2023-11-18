@@ -1,8 +1,7 @@
 .root {
-    flex: 0 0 auto;
-    text-align: center;
-    margin: 1rem 0;
+    grid-area: footer;
     font-size: 1.25rem;
     cursor: pointer;
     text-transform: uppercase;
+    margin: 1rem;
 }

@@ -1,9 +1,27 @@
 .root {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    margin: 0;
+    padding: 0;
     color: white;
     background-color: #344855;
+    display: grid;
+    overflow: hidden;
+    height: 100vh;
+    grid-template-columns: 100vmin 1fr;
+    grid-template-rows: auto;
+    grid-template-areas:
+        "board score"
+        "board ."
+        "board footer";
 }
+
+
+@media only screen and (max-width: 800px) {
+    .root {
+        grid-template-columns: auto 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas:
+        "score"
+        "board"
+        "footer";
+    }
+  }

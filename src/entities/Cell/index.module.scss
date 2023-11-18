@@ -14,8 +14,6 @@ $color-ball-8: salmon;
 $color-ball-9: lime;
 $color-ball-10: royalblue;
 
-$size-cell: 14vmin;
-$size-ball: $size-cell * 0.55;
 $shineShiftX: 60%;
 $shineShiftY: 20%;
 
@@ -42,11 +40,12 @@ $shineShiftY: 20%;
 }
 
 .root {
-    width: $size-cell;
-    height: $size-cell;
+
+    position: relative;
+    width: 100%;
+    height: 100%;
     background-color: $color-cell;
     border: 1px solid $color-main;
-    flex: 0 1 auto;
     transition: all 0.25s;
     display: flex;
     justify-content: center;
@@ -62,8 +61,6 @@ $shineShiftY: 20%;
             opacity: 0.5;
             font-weight: bold;
         }
-
-        // background-color: $color-cell-track;
     }
 
     &.error {
@@ -73,18 +70,11 @@ $shineShiftY: 20%;
 
 .ball {
     position: absolute;
-    width: $size-ball;
-    height: $size-ball;
+    width: 55%;
+    height: 55%;
     border-radius: 100%;
     transition: all 0.25s;
     box-shadow: -2px 5px 8px -3px black;
-
-    &.freeze {
-        width: $size-ball * 1.15;
-        height: $size-ball * 1.15;
-        border: 1px solid white;
-        filter: blur(1px);
-    }
 
     &.active {
         @extend %jump;
