@@ -1,4 +1,4 @@
-export const SIZE = 8;
+export const SIZE = 7;
 export const COLORS = 6;
 export const BORN_COUNT = 2;
 export const START_COUNT = 6;

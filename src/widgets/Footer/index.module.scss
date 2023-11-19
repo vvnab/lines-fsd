@@ -4,4 +4,12 @@
     cursor: pointer;
     text-transform: uppercase;
     margin: 1rem;
+    padding: 1rem;
+    background-color: lighten(#344855, 10%);
+    border: 1px solid white;
+    color: white;
+    
+    &:hover {
+        background-color: unset;
+    }
 }
