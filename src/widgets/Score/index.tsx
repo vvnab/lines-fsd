@@ -8,7 +8,7 @@ function Score(): JSX.Element {
         gameData.subscribe,
         gameData.getScoreSnapshot
     );
-    
+
     return (
         <div className={styles.root}>Score: {score.toLocaleString("ru")}</div>
     );

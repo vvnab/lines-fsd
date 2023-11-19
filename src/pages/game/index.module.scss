@@ -7,10 +7,10 @@
     overflow: hidden;
     height: 100vh;
     grid-template-columns: 100vmin 1fr;
-    grid-template-rows: auto;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas:
         "board score"
-        "board ."
+        "board score"
         "board footer";
 }
 

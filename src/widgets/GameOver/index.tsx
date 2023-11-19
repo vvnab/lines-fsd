@@ -1,9 +1,10 @@
 import { useSyncExternalStore } from "react";
+import { Link } from "react-router-dom";
 import gameData from "features/game";
 
 import styles from "./index.module.scss";
 
-function GameOver(): JSX.Element | null{
+function GameOver(): JSX.Element | null {
     const freeCells = useSyncExternalStore(
         gameData.subscribe,
         gameData.getFreeCellSnapshot
@@ -13,9 +14,9 @@ function GameOver(): JSX.Element | null{
         return null;
     } else {
         return (
-            <div className={styles.root} onClick={gameData.reset}>
-                Game over
-            </div>
+            <Link to='scores' className={styles.root}>
+                Game over 
+            </Link>
         );
     }
 }

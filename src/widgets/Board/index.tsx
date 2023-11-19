@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from "react";
+import { useSyncExternalStore, useEffect } from "react";
 import Cell from "entities/Cell";
 import gameData from "features/game";
 import { SIZE } from "features/game/const";
@@ -10,6 +10,8 @@ function Board(): JSX.Element {
         gameData.subscribe,
         gameData.getFieldSnapshot
     );
+
+    // useEffect(() => gameData.reset, []);
 
     return (
         <div

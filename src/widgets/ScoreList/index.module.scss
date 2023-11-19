@@ -1,0 +1,16 @@
+.root {
+    font-size: 2rem;
+    margin: 0 auto;
+    flex: 1 1 auto;
+
+    .red {
+        color: red;
+    }
+
+    tr {
+        td:first-child {
+            text-align: right;
+            padding-right: 2rem;
+        }
+    }
+}
