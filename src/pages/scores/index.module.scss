@@ -13,31 +13,4 @@
         text-align: center;
         font-size: 3rem;
     }
-
-    .footer {
-        background-color: #344855;
-        position: sticky;
-        bottom: 0;
-        padding: 1rem;
-
-        .button {
-            font-size: 1.25rem;
-            cursor: pointer;
-            display: block;
-            text-align: center;
-            text-transform: uppercase;
-            margin: 0 auto;
-            padding: 1rem;
-            background-color: lighten(#344855, 10%);
-            border: 1px solid white;
-            color: white;
-            text-decoration: none;
-            text-transform: uppercase;
-            max-width: 100vmin;
-
-            &:hover {
-                background-color: unset;
-            }
-        }
-    }
 }

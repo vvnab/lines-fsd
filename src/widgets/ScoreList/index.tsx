@@ -1,4 +1,4 @@
-import { useSyncExternalStore, useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef } from "react";
 import gameData from "features/game";
 
 import styles from "./index.module.scss";
@@ -10,11 +10,10 @@ function Scores(): JSX.Element {
 
     const [scores, setScores] = useState([]);
     const [index, setIndex] = useState();
-
-    const score = useSyncExternalStore(
-        gameData.subscribe,
-        gameData.getScoreSnapshot
-    );
+    
+    const freeCells = gameData.getFreeCells().length;
+    const score = freeCells ? 0 : gameData.score;
+    
 
     useEffect(() => {
         inputRef?.current?.focus();
@@ -57,35 +56,43 @@ function Scores(): JSX.Element {
     return (
         <table className={styles.root}>
             <tbody>
-                {scores.map(({ name, score }, key) => (
-                    <tr key={key} className={key === index ? styles.red : ""}>
-                        <td
-                            contentEditable={key === index}
-                            suppressContentEditableWarning={true}
-                            onBlur={onChange}
-                            onKeyDown={(event) => {
-                                if (event.key === "Enter") {
-                                    inputRef.current.blur();
-                                    event.preventDefault();
-                                }
+                {scores.map(({ name, score }, key) =>
+                    key === index && !freeCells ? (
+                        <tr key={key} className={styles.red}>
+                            <td
+                                contentEditable={true}
+                                suppressContentEditableWarning={true}
+                                onBlur={onChange}
+                                onKeyDown={(event) => {
+                                    if (event.key === "Enter") {
+                                        inputRef.current.blur();
+                                        event.preventDefault();
+                                    }
 
-                                if (
-                                    event.currentTarget.innerText.length >=
-                                        MAX_NAME_LENGTH &&
-                                    !["Backspace", "Delete"].includes(event.key)
-                                ) {
-                                    event.preventDefault();
-                                }
-                            }}
-                            ref={key === index ? inputRef : null}
-                            autoFocus={true}
-                        >
-                            {name}
-                        </td>
-
-                        <td>{score}</td>
-                    </tr>
-                ))}
+                                    if (
+                                        event.currentTarget.innerText.length >=
+                                            MAX_NAME_LENGTH &&
+                                        !["Backspace", "Delete"].includes(
+                                            event.key
+                                        )
+                                    ) {
+                                        event.preventDefault();
+                                    }
+                                }}
+                                ref={inputRef}
+                                autoFocus={true}
+                            >
+                                {name}
+                            </td>
+                            <td>{score}</td>
+                        </tr>
+                    ) : (
+                        <tr key={key}>
+                            <td>{name}</td>
+                            <td>{score}</td>
+                        </tr>
+                    )
+                )}
             </tbody>
         </table>
     );
