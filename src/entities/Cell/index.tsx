@@ -5,16 +5,14 @@ import styles from "./index.module.scss";
 type Props = {
     color: number;
     state: State;
-    onClick: any;
+    onClick: React.MouseEventHandler<HTMLDivElement>;
 };
 
 function Cell({ state, color, onClick }: Props) {
     return (
         <div
             className={cn(styles.root, styles[state])}
-            onClick={() => {
-                onClick();
-            }}
+            onClick={onClick}
         >
             {color > 0 && (
                 <div

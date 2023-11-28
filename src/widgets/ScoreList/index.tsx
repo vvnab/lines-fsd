@@ -4,36 +4,38 @@ import gameData from "features/game";
 import styles from "./index.module.scss";
 
 const MAX_NAME_LENGTH = 15;
+type Score = { name: string; score: number };
 
 function Scores(): JSX.Element {
-    const inputRef: any = useRef(null);
+    const inputRef = useRef<HTMLTableCellElement>(null);
 
-    const [scores, setScores] = useState([]);
-    const [index, setIndex] = useState();
-    
+    const [scores, setScores] = useState<Score[]>([]);
+    const [index, setIndex] = useState<number>();
+
     const freeCells = gameData.getFreeCells().length;
     const score = freeCells ? 0 : gameData.score;
-    
 
     useEffect(() => {
         inputRef?.current?.focus();
     }, [inputRef, scores]);
 
     useEffect(() => {
-        let scores: any = localStorage.getItem("scores");
+        const scoresJSON = localStorage.getItem("scores");
+        let scores: Score[] = [];
         if (!scores) {
             scores = new Array(10).fill({ name: "---", score: 0 });
             localStorage.setItem("scores", JSON.stringify(scores));
         } else {
-            scores = JSON.parse(scores);
+            scores = scoresJSON && JSON.parse(scoresJSON);
         }
 
         scores = scores.sort(
-            ({ score: scoreA }: any, { score: scoreB }: any) => scoreB - scoreA
+            ({ score: scoreA }: Score, { score: scoreB }: Score) =>
+                scoreB - scoreA
         );
         let index =
             scores.findLastIndex(
-                ({ score: lastScore }: any) => lastScore >= score
+                ({ score: lastScore }: Score) => lastScore >= score
             ) + 1;
 
         if (index < 10) {
@@ -45,9 +47,9 @@ function Scores(): JSX.Element {
         setScores(scores);
     }, [score]);
 
-    const onChange = (event: any) => {
+    const onChange = (event: React.FocusEvent<HTMLTableCellElement>) => {
         const name = event.currentTarget.innerText;
-        let newScores: any = scores;
+        let newScores: Score[] = scores;
         index !== undefined && newScores.splice(index, 1, { name, score });
         localStorage.setItem("scores", JSON.stringify(newScores));
         setScores(newScores);
@@ -65,7 +67,7 @@ function Scores(): JSX.Element {
                                 onBlur={onChange}
                                 onKeyDown={(event) => {
                                     if (event.key === "Enter") {
-                                        inputRef.current.blur();
+                                        inputRef.current?.blur();
                                         event.preventDefault();
                                     }
 
